@@ -5,9 +5,9 @@ function InputBox() {
   const [amount, setAmount] = useState('');
   const [fromCurrency, setFromCurrency] = useState("PKR");
   const [toCurrency, setToCurrency] = useState("USD");
-  const [convertedAmount, setConvertedAmount] = useState(null);
+  const [convertedAmount, setConvertedAmount] = useState("");
   const [currencies, setCurrencies] = useState([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
   const [exchangeRate, setExchangeRate] = useState({});
 
   useEffect(() => {
@@ -49,7 +49,7 @@ function InputBox() {
     <>
       {error && <div style={{ color: "red", textAlign: "center" }}>{error}</div>}
       <h1 style={{ textAlign: "center", fontSize: "50px", color: "pink" }}>Currency Converter</h1>
-      <div style={{
+      <div className="converter-container" style={{
         height: "320px", width: "450px", border: "2px solid rgba(255, 255, 255, 0.1)",
         marginLeft: "33%", marginTop: "80px", borderRadius: "15px", background: "rgba(255, 255, 255, 0.1)",
         boxShadow: "0 25px 45px rgba(0, 0, 0, 0.2)"
@@ -88,6 +88,7 @@ function InputBox() {
 
         {/* Swap Button */}
         <button
+          className="swap-btn"
           style={{
             position: "absolute", top: "50%", left: "45%", transform: "translate(80%, -105%)",
             backgroundColor: "rgb(32, 197, 120)", color: "white", padding: "10px 20px",
@@ -132,6 +133,7 @@ function InputBox() {
 
         {/* Convert Button */}
         <button
+          className="convert-btn"
           style={{
             height: "48px", width: "400px", marginLeft: "27px", marginTop: "25px", border: "none",
             backgroundColor: "rgb(32, 197, 120)", fontSize: "20px", color: "white",
