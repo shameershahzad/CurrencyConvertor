@@ -137,7 +137,7 @@ body {
     gap: 20px;
   }
 
-    .input-row input {
+  .input-row input {
     width: 50%; /* full half width */
     margin-right: 4px; /* small gap to the select */
   }
@@ -199,7 +199,7 @@ body {
     margin-bottom: 30px;
   }
 
-    .input-row input {
+  .input-row input {
     width: 50%;
     margin-right: 5px;
   }
