@@ -46,105 +46,60 @@ function InputBox() {
   };
 
   return (
-    <>
-      {error && <div style={{ color: "red", textAlign: "center" }}>{error}</div>}
-      <h1 style={{ textAlign: "center", fontSize: "50px", color: "pink" }}>Currency Converter</h1>
-      <div className="converter-container" style={{
-        height: "320px", width: "450px", border: "2px solid rgba(255, 255, 255, 0.1)",
-        marginLeft: "33%", marginTop: "80px", borderRadius: "15px", background: "rgba(255, 255, 255, 0.1)",
-        boxShadow: "0 25px 45px rgba(0, 0, 0, 0.2)"
-      }}>
-        {/* Input Section */}
+   <>
+  {error && <div className="error-msg">{error}</div>}
+  <h1 className="converter-title">Currency Converter</h1>
+
+  <div className="converter-card">
+    {/* Glassy container */}
+    <div className="glass-container">
+      {/* From Section */}
+      <div className="input-row">
         <div>
-          <div style={{
-            display: "flex", height: "90px", width: "400px", marginLeft: "27px", marginTop: "30px",
-            borderRadius: "15px", backgroundColor: "white"
-          }}>
-            <div style={{ margin: "5px", width: "200px", paddingTop: "7px" }}>
-              <label style={{ fontSize: "18px", marginLeft: "20px", color: "gray" }}>From</label>
-              <br />
-              <input
-                style={{ marginLeft: "20px", height: "30px", marginTop: "5px",
-                   width: "150px", outline: "none",border:"1px solid gray",borderRadius:"10px" }}
-                type="tel"
-                value={amount}
-                onChange={(e) => setAmount(Number(e.target.value))}
-              />
-            </div>
-            <div style={{ margin: "5px", width: "200px", display: "flex", flexDirection: "column" }}>
-              <label style={{ marginTop: "8px", marginLeft: "69px", color: "gray", fontSize: "18px" }}>Currency Type</label>
-              <select
-                style={{ marginTop: "4px", marginLeft: "90px", height: "30px", width: "70px", borderRadius: "10px" }}
-                value={fromCurrency}
-                onChange={(e) => setFromCurrency(e.target.value)}
-              >
-                {currencies.map((currency) => (
-                  <option key={currency} value={currency}>{currency}</option>
-                ))}
-              </select>
-            </div>
-          </div>
+          <label>From</label>
+          <input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(Number(e.target.value))}
+          />
         </div>
-
-        {/* Swap Button */}
-        <button
-          className="swap-btn"
-          style={{
-            position: "absolute", top: "50%", left: "45%", transform: "translate(80%, -105%)",
-            backgroundColor: "rgb(32, 197, 120)", color: "white", padding: "10px 20px",
-            border: "none", borderRadius: "4px", alignSelf: "center", cursor: "pointer"
-          }}
-          onClick={handleSwap}
-        >
-          Swap
-        </button>
-
-        {/* Output Section */}
         <div>
-          <div style={{
-            display: "flex", height: "90px", width: "400px", marginLeft: "27px", marginTop: "16px",
-            borderRadius: "15px", backgroundColor: "white"
-          }}>
-            <div style={{ margin: "5px", width: "200px", paddingTop: "7px" }}>
-              <label style={{ fontSize: "18px", marginLeft: "20px", color: "gray" }}>To</label>
-              <br />
-              <input
-                style={{ marginLeft: "20px", height: "30px", marginTop: "12px", border: "1px solid gray",
-                   width: "150px", outline: "none" , borderRadius:"10px" }}
-                type="tel"
-                value={convertedAmount}
-                readOnly
-              />
-            </div>
-            <div style={{ margin: "5px", width: "200px", display: "flex", flexDirection: "column" }}>
-              <label style={{ marginTop: "8px", marginLeft: "69px", color: "gray", fontSize: "18px" }}>Currency Type</label>
-              <select
-                style={{ marginTop: "4px", marginLeft: "90px", height: "30px", width: "70px", borderRadius: "10px" }}
-                value={toCurrency}
-                onChange={(e) => setToCurrency(e.target.value)}
-              >
-                {currencies.map((currency) => (
-                  <option key={currency} value={currency}>{currency}</option>
-                ))}
-              </select>
-            </div>
-          </div>
+          <label>Currency Type</label>
+          <select value={fromCurrency} onChange={(e) => setFromCurrency(e.target.value)}>
+            {currencies.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
         </div>
-
-        {/* Convert Button */}
-        <button
-          className="convert-btn"
-          style={{
-            height: "48px", width: "400px", marginLeft: "27px", marginTop: "25px", border: "none",
-            backgroundColor: "rgb(32, 197, 120)", fontSize: "20px", color: "white",
-            borderRadius: "15px", cursor: "pointer"
-          }}
-          onClick={handleConvert}
-        >
-          Convert {fromCurrency} to {toCurrency}
-        </button>
       </div>
-    </>
+
+      {/* Swap Button in between */}
+      <button className="swap-btn" onClick={handleSwap}>⇅ Swap</button>
+
+      {/* To Section */}
+      <div className="input-row">
+        <div>
+          <label>To</label>
+          <input type="number" value={convertedAmount} readOnly />
+        </div>
+        <div>
+          <label>Currency Type</label>
+          <select value={toCurrency} onChange={(e) => setToCurrency(e.target.value)}>
+            {currencies.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+    </div>
+
+    {/* Convert Button */}
+    <button className="convert-btn" onClick={handleConvert}>
+      Convert {fromCurrency} to {toCurrency}
+    </button>
+  </div>
+</>
+
   );
 }
 
