@@ -54,44 +54,65 @@ function InputBox() {
     {/* Glassy container */}
     <div className="glass-container">
       {/* From Section */}
-      <div className="input-row">
-        <div>
-          <label>From</label>
-          <input
-            type="number"
-            value={amount}
-            onChange={(e) => setAmount(Number(e.target.value))}
-          />
-        </div>
-        <div>
-          <label>Currency Type</label>
-          <select value={fromCurrency} onChange={(e) => setFromCurrency(e.target.value)}>
-            {currencies.map((c) => (
-              <option key={c} value={c}>{c}</option>
-            ))}
-          </select>
-        </div>
-      </div>
+     <div className="input-row" style={{ display: "flex", gap: "20px" }}>
+  {/* From field */}
+  <div style={{ display: "flex", flexDirection: "column", width: "170px" }}>
+    <label style={{ marginBottom: "4px", textAlign: "left" }}>From:</label>
+    <input
+      type="number"
+      value={amount}
+      onChange={(e) => setAmount(Number(e.target.value))}
+      style={{ width: "100%", padding: "8px", borderRadius: "8px", border: "1px solid #ccc" }}
+    />
+  </div>
+
+  {/* Currency Type field */}
+  <div style={{ display: "flex", flexDirection: "column", width: "170px" }}>
+    <label style={{ marginBottom: "4px", textAlign: "left",marginLeft: "5px" }}>Currency Type</label>
+    <select
+      value={fromCurrency}
+      onChange={(e) => setFromCurrency(e.target.value)}
+      style={{ width: "100%", padding: "8px", borderRadius: "8px", border: "1px solid #ccc" }}
+    >
+      {currencies.map((c) => (
+        <option key={c} value={c}>{c}</option>
+      ))}
+    </select>
+  </div>
+</div>
+
 
       {/* Swap Button in between */}
       <button className="swap-btn" onClick={handleSwap}>⇅ Swap</button>
 
       {/* To Section */}
-      <div className="input-row">
-        <div>
-          <label>To</label>
-          <input type="number" value={convertedAmount} readOnly />
-        </div>
-        <div>
-          <label>Currency Type</label>
-          <select value={toCurrency} onChange={(e) => setToCurrency(e.target.value)}>
-            {currencies.map((c) => (
-              <option key={c} value={c}>{c}</option>
-            ))}
-          </select>
-        </div>
-      </div>
-    </div>
+<div className="input-row" style={{ display: "flex", gap: "20px" }}>
+  {/* To field */}
+  <div style={{ display: "flex", flexDirection: "column", width: "170px" }}>
+    <label style={{ marginBottom: "4px", textAlign: "left" }}>To:</label>
+    <input
+      type="number"
+      value={convertedAmount}
+      readOnly
+      style={{ width: "100%", padding: "8px", borderRadius: "8px", border: "1px solid #ccc" }}
+    />
+  </div>
+
+  {/* Currency Type field */}
+  <div style={{ display: "flex", flexDirection: "column", width: "170px" }}>
+    <label style={{ marginBottom: "4px", textAlign: "left",marginLeft: "5px" }}>Currency Type</label>
+    <select
+      value={toCurrency}
+      onChange={(e) => setToCurrency(e.target.value)}
+      style={{ width: "100%", padding: "8px", borderRadius: "8px", border: "1px solid #ccc" }}
+    >
+      {currencies.map((c) => (
+        <option key={c} value={c}>{c}</option>
+      ))}
+    </select>
+  </div>
+</div>
+</div>
 
     {/* Convert Button */}
     <button className="convert-btn" onClick={handleConvert}>

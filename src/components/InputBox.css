@@ -1,37 +1,48 @@
-/* Body */
-body {
+/* Full background */
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   background-image: url('/images/Background Image.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;
-  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Body wrapper */
+body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 20px 0;
-  font-family: Arial, sans-serif;
+  padding: 20px; /* always keep space around card */
+  min-height: 100vh;
   box-sizing: border-box;
 }
 
-/* Main card */
+/* Converter card */
 .converter-card {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
   border-radius: 25px;
   padding: 40px 25px 25px 25px;
-  width: 90%;
+  width: 100%;
   max-width: 450px;
+  min-width: 280px; /* prevent too narrow */
   box-shadow: 0 15px 40px rgba(0,0,0,0.3);
   position: relative;
-  text-align: center; 
+  text-align: center;
   border: 1px solid rgba(255,255,255,0.15);
   min-height: 300px;
   box-sizing: border-box;
   margin: 0 auto;
+  transition: all 0.3s ease;
 }
 
-/* Title */
+
+/* ---------------- Title ---------------- */
 .converter-title {
   font-size: 2.8rem;
   color: #f5c0d4;
@@ -39,9 +50,10 @@ body {
   font-weight: bold;
   text-shadow: 0 2px 5px rgba(0,0,0,0.4);
   text-align: center;
+  transition: font-size 0.3s ease;
 }
 
-/* Glass container */
+/* ---------------- Glass Container ---------------- */
 .glass-container {
   display: flex;
   flex-direction: column;
@@ -49,9 +61,9 @@ body {
   position: relative;
 }
 
-/* Input sections */
+/* ---------------- Input Row ---------------- */
 .input-row {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 15px;
   padding: 12px 20px;
   min-height: 60px;
@@ -59,7 +71,7 @@ body {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  gap: 10px; /* space between input/select */
+  gap: 10px;
 }
 
 .input-row input,
@@ -73,6 +85,7 @@ body {
   box-sizing: border-box;
 }
 
+/* ---------------- Buttons ---------------- */
 .swap-btn {
   position: absolute;
   top: 50%;
@@ -118,48 +131,62 @@ body {
   margin-bottom: 10px;
 }
 
-/* Small screens ≤480px (including exact 480px) */
+
+/* Small screens ≤480px */
 @media (max-width: 480px) {
+  body {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
   .converter-card {
-    width: 90%;
-    max-width: 450px;
-    padding: 30px 15px 25px 15px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
+    padding: 25px 15px;
+    min-width: 280px; /* prevent too narrow and white edges */
+    min-height: auto;
   }
 
   .converter-title {
-    font-size: 2rem;
-    margin-bottom: 20px;
+    font-size: 1.8rem;
     text-align: center;
   }
 
-  .glass-container {
-    gap: 20px;
-  }
-
-  .input-row input {
-    width: 50%; /* full half width */
-    margin-right: 4px; /* small gap to the select */
-  }
-
+  .input-row input,
   .input-row select {
-    width: 50%; /* full half width */
-    margin-left: 4px; /* small gap from input */
+    width: calc(50% - 5px);
+  }
+}
+/* Very small screens ≤350px */
+@media (max-width: 350px) {
+  body {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
-  .swap-btn {
-    padding: 8px 24px;
-    font-size: 16px;
+  .converter-card {
+    width: 100%;
+    padding: 20px 10px;
+    min-width: 240px; /* maintain small card */
   }
 
-  .convert-btn {
-    margin-top: 20px;
-    padding: 12px;
-    font-size: 16px;
+  .input-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .input-row input,
+  .input-row select {
+    width: 100%;
+    margin: 0;
+  }
+
+  .converter-title {
+    font-size: 1.6rem;
   }
 }
 
-/* Medium screens 481px to 768px */
+/* ---------------- Medium screens 481px to 768px ---------------- */
 @media (min-width: 481px) and (max-width: 768px) {
   .converter-card {
     width: 95%;
@@ -173,18 +200,14 @@ body {
     text-align: center;
   }
 
-   .input-row input {
-    width: 50%;
-    margin-right: 5px; /* small gap */
-  }
-
+  .input-row input,
   .input-row select {
-    width: 50%;
-    margin-left: 5px;
+    width: 48%;
+    margin: 0;
   }
 }
 
-/* Large screens ≥769px */
+/* ---------------- Large screens ≥769px ---------------- */
 @media (min-width: 769px) {
   .converter-card {
     width: 95%;
@@ -199,19 +222,10 @@ body {
     margin-bottom: 30px;
   }
 
-  .input-row input {
-    width: 50%;
-    margin-right: 5px;
-  }
-
+  .input-row input,
   .input-row select {
-    width: 50%;
-    margin-left: 5px;
-  }
-
-  .convert-btn {
-    font-size: 18px;
-    padding: 14px;
-    margin-top: 30px;
+    width: 48%;
+    margin: 0;
   }
 }
+
