@@ -55,10 +55,23 @@ jobs:
 
   build_test_lint:
     name: Build, Test & Lint
-    needs: gateway
+    needs: [gateway, rescan]
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
+      - name: Wait for all findings to be reviewed
+        shell: powershell
+        run: |
+          for ($i = 0; $i -lt 60; $i++) {
+            $status = Invoke-RestMethod -Uri "http://localhost:8000/api/projects/${{ vars.SENTRA_PROJECT_ID }}/ci-findings-status/${{ github.event.pull_request.number }}" -Headers @{ "X-Sentra-Api-Key" = "${{ secrets.SENTRA_API_KEY }}" }
+            Write-Host "Open findings remaining: $($status.open_count)"
+            if ($status.all_resolved) {
+              exit 0
+            }
+            Start-Sleep -Seconds 15
+          }
+          Write-Host "::error::Timed out waiting for all findings to be reviewed on the PR comment."
+          exit 1
       - name: Install dependencies
         shell: powershell
         run: npm install
