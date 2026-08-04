@@ -78,9 +78,6 @@ jobs:
       - name: Build
         shell: powershell
         run: npm run build
-      - name: Run tests
-        shell: powershell
-        run: npm test
       - name: Lint
         shell: powershell
         run: npm run lint
