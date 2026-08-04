@@ -53,7 +53,7 @@ jobs:
           Write-Host "::error::Timed out waiting for Sentra scan to finish."
           exit 1
 
- build_test_lint:
+  build_test_lint:
     name: Build, Test & Lint
     needs: gateway
     runs-on: self-hosted
