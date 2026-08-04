@@ -53,15 +53,21 @@ jobs:
           Write-Host "::error::Timed out waiting for Sentra scan to finish."
           exit 1
 
-  build_test_lint:
+ build_test_lint:
     name: Build, Test & Lint
     needs: gateway
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
-      - name: Run project build/test/lint
+      - name: Install dependencies
         shell: powershell
-        run: |
-          Write-Host "REPLACE ME: add your real build command"
-          Write-Host "REPLACE ME: add your real test command"
-          Write-Host "REPLACE ME: add your real lint command"
+        run: npm install
+      - name: Build
+        shell: powershell
+        run: npm run build
+      - name: Run tests
+        shell: powershell
+        run: npm test
+      - name: Lint
+        shell: powershell
+        run: npm run lint
