@@ -13,7 +13,8 @@ function InputBox() {
   useEffect(() => {
     const fetchApi = async () => {
       try {
-        const res = await fetch("https://api.currencyapi.com/v3/latest?apikey=cur_live_quGT5J77xotqOoRNtx65iTuunTAKrlpVjeGJi7Op");
+        const apiKey = import.meta.env.VITE_CURRENCY_API_KEY;
+        const res = await fetch(`https://api.currencyapi.com/v3/latest?apikey=${apiKey}`);
         if (!res.ok) {
           throw new Error("Network error: Unable to fetch exchange rates");
         }
