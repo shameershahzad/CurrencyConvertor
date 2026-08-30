@@ -57,7 +57,7 @@ function InputBox() {
       {/* From Section */}
      <div className="input-row" style={{ display: "flex", gap: "20px" }}>
   {/* From field */}
-  <div style={{ display: "flex", flexDirection: "column", width: "170px" }}>
+  <div className="input-field" style={{ display: "flex", flexDirection: "column", width: "170px" }}>
     <label style={{ marginBottom: "4px", textAlign: "left" }}>From:</label>
     <input
       type="number"
@@ -68,7 +68,7 @@ function InputBox() {
   </div>
 
   {/* Currency Type field */}
-  <div style={{ display: "flex", flexDirection: "column", width: "170px" }}>
+  <div className="input-field" style={{ display: "flex", flexDirection: "column", width: "170px" }}>
     <label style={{ marginBottom: "4px", textAlign: "left",marginLeft: "5px" }}>Currency Type</label>
     <select
       value={fromCurrency}
@@ -89,7 +89,7 @@ function InputBox() {
       {/* To Section */}
 <div className="input-row" style={{ display: "flex", gap: "20px" }}>
   {/* To field */}
-  <div style={{ display: "flex", flexDirection: "column", width: "170px" }}>
+  <div className="input-field" style={{ display: "flex", flexDirection: "column", width: "170px" }}>
     <label style={{ marginBottom: "4px", textAlign: "left" }}>To:</label>
     <input
       type="number"
@@ -100,7 +100,7 @@ function InputBox() {
   </div>
 
   {/* Currency Type field */}
-  <div style={{ display: "flex", flexDirection: "column", width: "170px" }}>
+  <div className="input-field" style={{ display: "flex", flexDirection: "column", width: "170px" }}>
     <label style={{ marginBottom: "4px", textAlign: "left",marginLeft: "5px" }}>Currency Type</label>
     <select
       value={toCurrency}
