@@ -16,7 +16,7 @@ html, body {
 body {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   padding: 20px;
   min-height: 100vh;
   box-sizing: border-box;
@@ -130,8 +130,12 @@ body {
   margin-bottom: 10px;
 }
 
-/* Shrink card for small screens ≤480px */
-/* ≤480px: small screens */
+/* Small phones. body is already `display:flex; justify-content:center`, so
+   the card only needs a max-width here - adding margin-left/right on top of
+   that (as this block used to, alongside three other overlapping blocks that
+   duplicated it with slightly different numbers) fights the flex centering:
+   the margins don't shrink with the item, so the card overflowed off the
+   left edge of the screen instead of staying centered. */
 @media (max-width: 480px) {
   body {
     padding-left: 15px;
@@ -139,12 +143,8 @@ body {
   }
 
   .converter-card {
-    width: auto;              /* let max-width shrink naturally */
-    max-width: 460px;         /* maximum card width */
+    max-width: 420px;
     padding: 25px 15px;
-    min-height: 300px;
-    margin-left: 15px;        /* left margin */
-    margin-right: 15px;       /* right margin */
   }
 
   .converter-title {
@@ -152,26 +152,14 @@ body {
     text-align: center;
   }
 
-  .input-row input,
-  .input-row select {
-    width: calc(50% - 5px);
-  }
-}
-
-
-
-/* Shrink card between 350px - 450px and add side margin */
-@media (max-width: 450px) {
-  body {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
-  .converter-card {
-    width: 100%;
-    max-width: calc(100% - 30px);
-    padding: 25px 15px;
-    min-height: 300px;
+  /* .input-field is the label+input wrapper div and carries an inline
+     width:170px - that's what was actually forcing the row (and so the
+     card) to stay ~420px wide no matter how small the screen got, since a
+     flex item can't shrink below its content's min-content size. Overriding
+     it here (needs !important to beat the inline style) is what lets the
+     row actually shrink along with the card. */
+  .input-field {
+    width: calc(50% - 10px) !important;
   }
 
   .input-row input,
@@ -180,7 +168,7 @@ body {
   }
 }
 
-/* <350px: very small screens */
+/* <350px: very small screens - stack each row's two fields */
 @media (max-width: 350px) {
   body {
     padding-left: 10px;
@@ -188,12 +176,12 @@ body {
   }
 
   .converter-card {
-    width: auto;
-    max-width: 320px;        /* further shrink */
+    max-width: 320px;
     padding: 20px 10px;
-    min-height: 300px;
-    margin-left: 10px;       /* left margin */
-    margin-right: 10px;      /* right margin */
+  }
+
+  .converter-title {
+    font-size: 1.6rem;
   }
 
   .input-row {
@@ -201,56 +189,13 @@ body {
     gap: 10px;
   }
 
+  .input-field {
+    width: 100% !important;
+  }
+
   .input-row input,
   .input-row select {
     width: 100%;
-  }
-
-  .converter-title {
-    font-size: 1.6rem;
-  }
-}
-/* 355px–480px: ensure card shrinks and margins appear */
-@media (min-width: 355px) and (max-width: 480px) {
-  .converter-card {
-    width: auto;
-    max-width: 420px;        /* shrink card */
-    padding: 25px 15px;
-    min-height: 300px;
-    margin-left: 15px;       /* add side margins */
-    margin-right: 15px;
-  }
-}
-
-
-/* Screens 350px to 450px */
-@media (max-width: 450px) and (min-width: 351px) {
-  body {
-    padding-left: 15px;
-    padding-right: 15px; /* margin on both sides */
-  }
-
-  .converter-card {
-    width: auto;               /* let max-width take effect */
-    max-width: 420px;          /* shrink card */
-    padding: 25px 15px;
-    min-height: 300px;
-    margin-left: 15px;         /* add left margin */
-    margin-right: 15px;        /* add right margin */
-  }
-
-  .input-row {
-    gap: 10px;
-  }
-
-  .input-row input,
-  .input-row select {
-    width: calc(50% - 5px);
-  }
-
-  .converter-title {
-    font-size: 1.8rem;
-    text-align: center;
   }
 }
 
