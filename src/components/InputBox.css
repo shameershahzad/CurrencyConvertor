@@ -10,6 +10,17 @@ html, body {
   background-position: center;
   background-repeat: no-repeat;
   font-family: Arial, sans-serif;
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: pan-y;
+}
+
+#root {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Body wrapper */
@@ -19,6 +30,7 @@ body {
   align-items: center;
   padding: 20px;
   min-height: 100vh;
+  min-height: 100dvh;
   box-sizing: border-box;
 }
 
